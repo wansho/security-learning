@@ -12,20 +12,67 @@
 2. 如何授权
 3. 如何鉴权
 
-## 如何定义权限
+```python
+def partition(arr,low,high): 
+    i = ( low-1 )         # 最小元素索引
+    pivot = arr[high]     
+  
+    for j in range(low , high): 
+  
+        # 当前元素小于或等于 pivot 
+        if   arr[j] <= pivot: 
+          
+            i = i+1 
+            arr[i],arr[j] = arr[j],arr[i] 
+  
+    arr[i+1],arr[high] = arr[high],arr[i+1] 
+    return ( i+1 ) 
+  
+ 
+# arr[] --> 排序数组
+# low  --> 起始索引
+# high  --> 结束索引
+  
+# 快速排序函数
+def quickSort(arr,low,high): 
+    if low < high: 
+  
+        pi = partition(arr,low,high) 
+  
+        quickSort(arr, low, pi-1) 
+        quickSort(arr, pi+1, high) 
+  
+arr = [10, 7, 8, 9, 1, 5] 
+n = len(arr) 
+quickSort(arr,0,n-1) 
+print ("排序后的数组:") 
+for i in range(n): 
+    print ("%d" %arr[i]),
+```
 
-如何定义权限，就是对权限进行建模。
+## 访问控制模型-主谓宾
 
-总的来说，系统内的权限，可以分为菜单权限和数据权限。
+许多访问控制模型 Access Control，本质上都是主谓宾的结构：
+1. 定义哪些资源可以访问
+2. 定义谁可以访问
+3. 定义怎么访问
 
+
+|            | Subject                       | Object                                   | Verb              |
+| ---------- | ----------------------------- | ---------------------------------------- | ----------------- |
+| Unix安全模型   | process, user                 | file, dir, socket...                     | read, write, exec |
+| 浏览器安全模型    | origin (scheme://domain:port) | cookie, DOM, js namespace, HW permission | access            |
+| cookie安全模型 | origin (domain + path)        | cookie                                   | access            |
 
 ## UNIX安全模型-ACLs
 
-Subjects (Who?) Users, processes 
+权限模型好像都是主谓宾结构
+
+Subjects (Who?) ：Users, processes 
 Objects (What?) 
 - Files, directories 
-- Files: sockets, pipes, hardware devices, kernel objects, process data Access Operations 
-(How?) - Read, Write, Execute
+- Files: sockets, pipes, hardware devices, kernel objects, process data Access 
+Operations (How?) ：Read, Write, Execute
 
 Access Control List. The most common method of implementing access control in a computer system is through access control lists.All system resources, such as files, printers, and terminals, have a list of authorized users attached.
 
@@ -42,12 +89,12 @@ drwxr-xr-x     3 wanshuo  staff          96  3 22  2022 reading/
 
 ![](../drawing/acls.excalidraw)
 
-给用户授权的整体复杂度：$|N|$
-增加一个权限(文件)的复杂度：$|U|$
-查找一个用户有哪些权限： $|N * U|$
-查找一个权限(文件)有哪些用户拥有：$|U|$
+给用户授权的整体复杂度：$\lvert N \rvert$
+增加一个权限(文件)的复杂度： $\lvert U \rvert$
+查找一个用户有哪些权限：  $\lvert N * U \rvert$
+查找一个权限(文件)有哪些用户拥有： $\lvert U \rvert$
 删除一个权限(文件)的复杂度：$1$
-删除一个用户的复杂度：$|N*U|$
+删除一个用户的复杂度： $\lvert N*U \rvert$
 
 理想中的 ACLs 受制于 Object 的数量，当系统中存在大量的文件时，查找用户拥有的权限，是极其复杂的。它是面向 Object 的数据模型。
 
@@ -55,12 +102,12 @@ drwxr-xr-x     3 wanshuo  staff          96  3 22  2022 reading/
 
 ![](../drawing/acls_group.excalidraw)
 
-给用户授权的整体复杂度：$|U\_Group| * |N|$
-增加一个权限(文件)的复杂度：$|U\_Group|$
-查找一个用户有哪些权限： $|N| * |U\_Group|$
-查找一个权限(文件)有哪些用户拥有：$|U\_Group| * |U|$
+给用户授权的整体复杂度： $\lvert U\_Group \rvert * \lvert N \rvert$
+增加一个权限(文件)的复杂度： $\lvert U\_Group \rvert$
+查找一个用户有哪些权限：  $\lvert N \rvert * \lvert U\_Group \rvert$
+查找一个权限(文件)有哪些用户拥有： $\lvert U\_Group  \rvert * \lvert U \rvert$
 删除一个权限(文件)的复杂度：$1$
-删除一个用户的复杂度：$|U\_Group|$
+删除一个用户的复杂度： $\lvert U\_Group \rvert$
 
 总结，ACLs 是面向 objects 的权限模型，其复杂度上限受制于 objects 的数量。（RBAC 是面向 Subject 用户的权限模型）
 
@@ -70,14 +117,14 @@ drwxr-xr-x     3 wanshuo  staff          96  3 22  2022 reading/
 
 ![](../drawing/authorize.excalidraw)
 
-每一个用户，都绑定指定的权限。复杂度是 $|U|*|P|$，每增加一个用户，就要针对这个用户进行授权。$U$ 和 $P$ 是多对多的关系。
+每一个用户，都绑定指定的权限。复杂度是  $\lvert U \rvert * \lvert P \rvert$，每增加一个用户，就要针对这个用户进行授权。$U$ 和 $P$ 是多对多的关系。
 
-给用户授权的整体复杂度：$|U|*|P|$
-增加一个权限的复杂度：$|U|$
-查找一个用户有哪些权限： $|P|$
-查找一个权限有哪些用户拥有：$|U|*|P|$
-删除一个权限的复杂度：$|U|$
-删除一个用户的复杂度：$|P|$
+给用户授权的整体复杂度： $\lvert U \rvert * \lvert P \rvert$
+增加一个权限的复杂度： $\lvert U \rvert$
+查找一个用户有哪些权限：  $\lvert P \rvert$
+查找一个权限有哪些用户拥有： $\lvert U \rvert * \lvert P \rvert$
+删除一个权限的复杂度： $\lvert U \rvert$
+删除一个用户的复杂度： $\lvert P \rvert$
 
 ----
 
@@ -87,27 +134,35 @@ drwxr-xr-x     3 wanshuo  staff          96  3 22  2022 reading/
 
 对权限进行分组后，我们看一下时间复杂度：
 
-给用户授权的整体复杂度：$|U|*|P\_Group|+  |P\_Group| * |P| = |P\_Group| * |U + P|$
-增加一个权限的复杂度：$|P\_Group|$
-查找一个用户有哪些权限：$|P\_Group| * |P|$
-查找一个权限有哪些用户拥有：$|P\_Group| * |U|$
-删除一个权限的复杂度：$|P\_Group|$
-删除一个用户的复杂度：$|P\_Group|$
+给用户授权的整体复杂度： $\lvert U \rvert * \lvert P\_Group \rvert +   \lvert P\_Group \rvert * \lvert P \rvert =  \lvert P\_Group \rvert  *  \lvert U + P \rvert$
+增加一个权限的复杂度： $\lvert P\_Group \rvert$
+查找一个用户有哪些权限： $\lvert P\_Group \rvert *  \lvert P \rvert$
+查找一个权限有哪些用户拥有： $\lvert P\_Group \rvert *  \lvert U \rvert$
+删除一个权限的复杂度： $\lvert P\_Group \rvert$
+删除一个用户的复杂度： $\lvert P\_Group \rvert$
 
 复杂度的变化显而易见，由于权限被分组，时间复杂度整体上被降低了。
 
-给用户授权的整体复杂度：$|U|*|P|$ —> $|P\_Group| * |U + P|$
-增加一个权限的复杂度：$|U|$ —> $|P\_Group|$
-查找一个用户有哪些权限： $|P|$ —> $|P\_Group| * |P|$
-查找一个权限有哪些用户拥有：$|U|*|P|$ —> $|P\_Group| * |U|$
-删除一个权限的复杂度：$|U|$ —> $|P\_Group|$
-删除一个用户的复杂度：$|P|$ —> $|P\_Group|$
+给用户授权的整体复杂度： $\lvert U \rvert * \lvert P \rvert$ —>  $\lvert P\_Group \rvert *  \lvert U + P \rvert$
+增加一个权限的复杂度： $\lvert U \rvert$ —>  $\lvert P\_Group \rvert$
+查找一个用户有哪些权限：  $\lvert P \rvert$ —>  $\lvert P\_Group \rvert * \lvert P \rvert$
+查找一个权限有哪些用户拥有： $\lvert U \rvert * \lvert P \rvert$ —>  $\lvert P\_Group \rvert * \lvert U \rvert$
+删除一个权限的复杂度： $\lvert U \rvert$ —>  $\lvert P\_Group \rvert$
+删除一个用户的复杂度： $\lvert P \rvert$ —>  $\lvert P\_Group \rvert$
 
+**对权限进行分组，就是 RBAC 的核心思想。一组权限，代表了一个角色。**
+
+![](../drawing/authorize_group_role.excalidraw)
 
 ## 总结
 
-![](./drawing/latex_block.pdf)
+![](./drawing/rbac_compare.pdf)
 
 1. 不管是面向 Object 的 ACLs 还是面向 Subject 的 RBAC，分组后，都能够显著改善复杂度
 2. Any problem in computer science can be solved with another layer of indirection. -- David Wheeler
 
+
+## Reference
+
+- [Role-Based-Access-Control-Second-Edition](https://book.douban.com/subject/2586338/) [download](https://annas-archive.org/md5/b97cb9de7e038025784c6f1d7d9c9f58)
+- [Stanford CS155 Lecture 4: Principle of least privilege, access control, and operating systems security](https://cs155.stanford.edu/syllabus.html)

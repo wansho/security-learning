@@ -13,34 +13,15 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "rbac/chapter-2-Properties-Policies-Models.md",
+                "file": "RBAC的演化.md",
                 "mode": "source",
                 "source": false
-              }
-            }
-          },
-          {
-            "id": "14633a72a13e2f7b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "6d07c1f12d3b6f14",
-            "type": "leaf",
-            "state": {
-              "type": "empty",
-              "state": {}
+              },
+              "icon": "lucide-file",
+              "title": "RBAC的演化"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -59,8 +40,13 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "alphabetical"
-              }
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
             }
           },
           {
@@ -69,13 +55,15 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "",
+                "query": "CIA",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
             }
           },
           {
@@ -83,14 +71,19 @@
             "type": "leaf",
             "state": {
               "type": "bookmarks",
-              "state": {}
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "书签"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 339.5
+    "width": 282.5
   },
   "right": {
     "id": "506d1c3db327ecc0",
@@ -106,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "RBAC的演化.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -114,7 +107,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "RBAC的演化 的反向链接列表"
             }
           },
           {
@@ -123,10 +118,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "RBAC的演化.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "RBAC的演化 的出链列表"
             }
           },
           {
@@ -136,8 +133,12 @@
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true
-              }
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
             }
           },
           {
@@ -146,16 +147,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
-              }
-            }
-          },
-          {
-            "id": "11a82deff1ad1c5b",
-            "type": "leaf",
-            "state": {
-              "type": "calendar",
-              "state": {}
+                "file": "RBAC的演化.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "大纲"
             }
           },
           {
@@ -163,11 +161,13 @@
             "type": "leaf",
             "state": {
               "type": "advanced-tables-toolbar",
-              "state": {}
+              "state": {},
+              "icon": "spreadsheet",
+              "title": "Advanced Tables"
             }
           }
         ],
-        "currentTab": 5
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -176,6 +176,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:新建数据库": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
@@ -183,38 +184,42 @@
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
       "table-editor-obsidian:Advanced Tables Toolbar": false,
-      "obsidian-book-search-plugin:Create new book note": false,
-      "privacy-glasses:Hide all": false,
-      "privacy-glasses:Reveal non-private": false,
-      "privacy-glasses:Reveal all": false,
       "obsidian-excalidraw-plugin:新建绘图文件": false
     }
   },
-  "active": "14633a72a13e2f7b",
+  "active": "139aa4d10cd92d91",
   "lastOpenFiles": [
-    "RBAC的演化.md",
-    "drawing/acls.excalidraw.md",
-    "constraint(org).pdf",
-    "离散数学基础知识.md",
-    "参考资料",
     "README.md",
+    "RBAC的演化.md",
+    "Role-based access control-2nd ed, 2003.pdf",
+    "参考资料/未命名.md",
+    "参考资料/CS155-Security Principles and OS Security.pdf",
+    "SEv3.pdf",
+    "rbac/chapter-1-Introduction.md",
     "drawing/access-control-matrix.excalidraw.md",
+    "drawing/authorize_group.excalidraw.md",
+    "drawing/authorize_group_role.excalidraw.md",
+    "drawing/acls.excalidraw.md",
+    "drawing/acls_group.excalidraw.md",
+    "离散数学基础知识.md",
     "rbac/chapter-2-Properties-Policies-Models.md",
+    "drawing/authorize.excalidraw.md",
+    "drawing/rbac_compare.pdf",
+    "drawing/authorize_group.excalidraw.svg",
+    "drawing/acls_group.excalidraw.svg",
+    "drawing/acls.excalidraw.svg",
+    "2023-10-06.md",
+    "constraint(org).pdf",
+    "参考资料",
     "Excalidraw/Drawing 2023-10-01 20.29.51.excalidraw.md",
     "drawing/latex_block.pdf",
-    "rbac/chapter-1-Introduction.md",
-    "参考资料/CS155-Security Principles and OS Security.pdf",
     "drawing/demo.excalidraw.md",
     "Excalidraw",
-    "drawing/acls_group.excalidraw.md",
     "drawing/demo.excalidraw.png",
-    "drawing/authorize_group.excalidraw.md",
     "drawing/未命名.md",
     "drawing/excalidraw.md",
-    "drawing/authorize.excalidraw.md",
     "drawing/authorize.md",
     "drawing",
-    "rbac",
-    "参考资料/离散数学 -- 左孝凌; 刘永才.pdf"
+    "rbac"
   ]
 }

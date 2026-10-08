@@ -1,5 +1,10 @@
 {
-  "accentColor": "",
+  "accentColor": "#2f93e4",
   "theme": "moonstone",
-  "cssTheme": "Things"
+  "cssTheme": "Minimal",
+  "interfaceFontFamily": "",
+  "textFontFamily": "仓耳今楷01",
+  "enabledCssSnippets": [
+    "typora"
+  ]
 }

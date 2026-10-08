@@ -1,16 +1,29 @@
-# rbac-learning
-resources to learn rbac
+# security-learning
+resources to learn security
 
 
 
 ## 学习资源
 
- - [《RBAC权限系统分析、设计与实现》](https://shuwoom.com/?p=3041)
-* [尚硅谷RBAC权限实战教程(rbac项目框架实战)](https://www.bilibili.com/video/BV1pp411o7UX)
-* 可能是史上最全的权限系统设计 - 老刘的文章 - 知乎 https://zhuanlan.zhihu.com/p/73414693
-* https://auth0.com/docs/manage-users/access-control/rbac
-* 书：[Role-based Access Control](https://book.douban.com/subject/2586338/)
+
+
+
+
+
+
+* [Security Engineering](https://www.cl.cam.ac.uk/archive/rja14/book.html)
+
 * cs155: https://cs155.stanford.edu/syllabus.html
+
+* [Role-based Access Control](https://book.douban.com/subject/2586338/)
+
+* [尚硅谷RBAC权限实战教程(rbac项目框架实战)](https://www.bilibili.com/video/BV1pp411o7UX)
+
+* 可能是史上最全的权限系统设计 - 老刘的文章 - 知乎 https://zhuanlan.zhihu.com/p/73414693
+
+* https://auth0.com/docs/manage-users/access-control/rbac
+
+  
 
 
 ## 专有名词

@@ -1,3 +1,5 @@
+```toc
+```
 
 resources to learn rbac
 
@@ -9,11 +11,22 @@ resources to learn rbac
 * https://auth0.com/docs/manage-users/access-control/rbac
 * 书：[Role-based Access Control](https://book.douban.com/subject/2586338/)
 
+
+## 信息安全三原则
+
+Confidentiality, Integrity, and Availability (CIA) are three fundamental principles of information security. These principles form the basis for designing and implementing secure systems and protecting sensitive information.
+
+1. Confidentiality: Confidentiality ensures that information is kept private and accessible only to authorized individuals or entities. It involves protecting sensitive data from unauthorized access, disclosure, or exposure. Measures such as encryption, access controls, and secure communication channels are used to maintain confidentiality.
+    
+2. Integrity: Integrity ensures that information remains accurate, complete, and unaltered during storage, processing, and transmission. It involves preventing unauthorized modification, deletion, or corruption of data. Techniques like data validation, checksums, digital signatures, and access controls are employed to maintain data integrity.
+    
+3. Availability: Availability ensures that information and system resources are accessible and usable when needed. It involves ensuring that authorized users can access information and system services without disruption or denial of service. Measures such as redundancy, backups, disaster recovery plans, and robust infrastructure are implemented to maintain availability.
+
 ## 专有名词
 
 CIA：
 Confidentiality：机密性（防止机密泄露，低级别的不能访问高级别的）
-Integrity：完整性（防止机密被篡改）
+Integrity：完整性（防止机密被篡改，存储和传输的过程中，不被篡改）
 Availability：可用性
 
 session：An instance of a user’s dialog with a system is called a session.
@@ -33,8 +46,6 @@ Confidential： 秘密
 
 Trojan horse attack：特洛伊木马攻击 （获取当前用户权限，用当前用户的权限干坏事）
 
-
-
 ## Least Privilege
 
 Security Subjects
@@ -47,10 +58,7 @@ Least privilege and privilege separation apply to more than just users!
 
 Least Privilege:  Subjects should only have access to access the data and resources needed to perform routine, authorized tasks
 
-
-
 ## ACLs
-
 
 ACLs：Access Control List. The most common method of implementing access control in a computer system is through access control lists.All system resources, such as files, printers, and terminals, have a list of authorized users attached.
 

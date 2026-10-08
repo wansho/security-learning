@@ -1,0 +1,393 @@
+/*
+ * Typora 官方 Github 主题的 Obsidian 适配。
+ * 设计基准来自 Typora 应用自带的 github.css，而非旧样式片段。
+ */
+
+:root {
+	--typora-sidebar-bg: #fafafa;
+	--typora-text: #333333;
+	--typora-muted: #777777;
+	--typora-link: #4183c4;
+	--typora-border: #e7e7e7;
+	--typora-code-border: #e7eaed;
+	--typora-code-bg: #f8f8f8;
+	--typora-selection: #b5d5ff;
+}
+
+body {
+	--font-text-theme: "仓耳今楷01", "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, sans-serif;
+	--font-editor-override: "仓耳今楷01", "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, sans-serif;
+	--font-interface-theme: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+	--font-text-size: 16px;
+	--line-height-normal: 1.6;
+	--file-line-width: 860px;
+	--link-color: var(--typora-link);
+	--link-color-hover: #2f6f9f;
+	--text-normal: var(--typora-text);
+	--text-muted: var(--typora-muted);
+	--blockquote-border-color: #dfe2e5;
+	--blockquote-color: var(--typora-muted);
+	--code-background: var(--typora-code-bg);
+	--code-normal: var(--typora-text);
+	--text-selection: var(--typora-selection);
+	--table-border-color: #dfe2e5;
+	--table-border-width: 1px;
+	--table-header-border-width: 1px;
+	--table-column-first-border-width: 1px;
+	--table-column-last-border-width: 1px;
+	--table-row-last-border-width: 1px;
+	--table-cell-padding: 6px 13px;
+	--table-header-background: var(--typora-code-bg);
+	--table-row-alt-background: var(--typora-code-bg);
+}
+
+.theme-light {
+	--background-primary: #ffffff;
+	--background-secondary: var(--typora-sidebar-bg);
+	--background-secondary-alt: var(--typora-sidebar-bg);
+	--background-modifier-border: var(--typora-border);
+	--background-modifier-hover: #f1f1f1;
+	--background-modifier-active-hover: #e8e8e8;
+}
+
+/* 保留 Obsidian 原生工具栏，但收窄并降低对比度。 */
+.workspace-ribbon {
+	display: flex !important;
+	flex: 0 0 44px;
+	width: 44px;
+	border: 0 !important;
+	background: var(--typora-sidebar-bg);
+}
+
+.side-dock-ribbon {
+	display: flex !important;
+	background: transparent;
+}
+
+.workspace-ribbon .side-dock-ribbon-action {
+	color: var(--typora-muted);
+	opacity: 0.78;
+}
+
+.workspace-ribbon .side-dock-ribbon-action:hover {
+	color: var(--typora-text);
+	background: #f1f1f1;
+}
+
+/* Focus mode 下仍保留收起后的工具栏和展开按钮。 */
+.minimal-focus-mode .workspace-ribbon.mod-primary.is-collapsed {
+	background: var(--typora-sidebar-bg);
+}
+
+.minimal-focus-mode .workspace-ribbon.mod-primary.is-collapsed .side-dock-actions,
+.minimal-focus-mode .workspace-ribbon.mod-primary.is-collapsed .side-dock-settings {
+	opacity: 0.78 !important;
+}
+
+.minimal-focus-mode .workspace-ribbon.mod-primary.is-collapsed:hover .side-dock-actions,
+.minimal-focus-mode .workspace-ribbon.mod-primary.is-collapsed:hover .side-dock-settings {
+	opacity: 1 !important;
+}
+
+/* 保留顶部原生控制区，确保侧栏收起后仍能重新展开。 */
+.workspace-split.mod-root > .workspace-tabs > .workspace-tab-header-container {
+	display: flex !important;
+	min-height: 40px;
+	border-bottom: 1px solid var(--typora-border);
+	background: #ffffff;
+}
+
+.minimal-focus-mode .mod-root .sidebar-toggle-button.mod-secondary {
+	opacity: 0.78 !important;
+	color: var(--typora-muted);
+}
+
+.minimal-focus-mode .mod-root .sidebar-toggle-button.mod-secondary:hover {
+	opacity: 1 !important;
+	color: var(--typora-text);
+}
+
+/* macOS 窗口按钮需要独占左上角，避免压住侧栏菜单。 */
+body.mod-macos:not(.is-fullscreen) .mod-left-split .workspace-tabs.mod-top-left-space > .workspace-tab-header-container {
+	padding-left: 136px !important;
+}
+
+.workspace-split.mod-left-split,
+.workspace-split.mod-right-split,
+.workspace-sidedock-vault-profile {
+	background: var(--typora-sidebar-bg);
+}
+
+.workspace-split.mod-root .workspace-tab-header-container,
+.workspace-split.mod-root .view-header,
+.workspace-leaf-resize-handle {
+	border-color: transparent;
+}
+
+.nav-file-title,
+.nav-folder-title {
+	min-height: 30px;
+	border-radius: 0;
+	color: var(--typora-muted);
+	font-size: 15px;
+	line-height: 1.6;
+}
+
+.nav-file-title:hover,
+.nav-folder-title:hover {
+	color: var(--typora-text);
+	background: #f1f1f1;
+}
+
+.nav-file-title.is-active {
+	color: var(--typora-text);
+	background: #e8e8e8;
+}
+
+/* Typora Github：常规 860px，宽屏逐级放宽。 */
+.markdown-preview-view .markdown-preview-sizer {
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 860px !important;
+	margin: 0 auto;
+	padding: 30px 30px 100px !important;
+}
+
+@media only screen and (min-width: 1400px) {
+	body {
+		--file-line-width: 1024px;
+	}
+
+	.markdown-preview-view .markdown-preview-sizer {
+		max-width: 1024px !important;
+	}
+}
+
+@media only screen and (min-width: 1800px) {
+	body {
+		--file-line-width: 1200px;
+	}
+
+	.markdown-preview-view .markdown-preview-sizer {
+		max-width: 1200px !important;
+	}
+}
+
+.markdown-source-view.mod-cm6 .cm-content,
+.markdown-reading-view {
+	color: var(--typora-text);
+	-webkit-font-smoothing: antialiased;
+}
+
+/* 编辑器必须使用与 CodeMirror 测量一致的固定行高，避免点击行与光标错位。 */
+.markdown-source-view.mod-cm6 .cm-content {
+	line-height: 1.5;
+}
+
+.markdown-rendered h1,
+.markdown-rendered h2,
+.markdown-rendered h3,
+.markdown-rendered h4,
+.markdown-rendered h5,
+.markdown-rendered h6 {
+	margin-top: 1rem !important;
+	margin-bottom: 1rem !important;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.markdown-rendered h1 {
+	border-bottom: 1px solid #eeeeee;
+	font-size: 2.25em !important;
+	line-height: 1.2;
+}
+
+.markdown-rendered h2 {
+	border-bottom: 1px solid #eeeeee;
+	font-size: 1.75em !important;
+	line-height: 1.225;
+}
+
+.markdown-rendered h3 {
+	border-bottom: 0;
+	font-size: 1.5em !important;
+	line-height: 1.43;
+}
+
+.markdown-rendered h4 {
+	border-bottom: 0;
+	font-size: 1.25em !important;
+}
+
+.markdown-rendered h5 {
+	border-bottom: 0;
+	font-size: 1em !important;
+}
+
+.markdown-rendered h6 {
+	border-bottom: 0;
+	color: var(--typora-muted);
+	font-size: 1em !important;
+}
+
+/* Typora 风格：一级、二级标题保留细下划线；使用内嵌阴影避免改变编辑行高度。 */
+.markdown-source-view.mod-cm6 .HyperMD-header-1,
+.markdown-source-view.mod-cm6 .HyperMD-header-2 {
+	box-shadow: inset 0 -1px var(--typora-border);
+}
+
+/* 编辑态标题恢复 Typora Github 的字号层级，但不添加块级外边距。 */
+.markdown-source-view.mod-cm6 .HyperMD-header-1 {
+	font-size: 2.25em !important;
+}
+
+.markdown-source-view.mod-cm6 .HyperMD-header-2 {
+	font-size: 1.75em !important;
+}
+
+.markdown-source-view.mod-cm6 .HyperMD-header-3 {
+	font-size: 1.5em !important;
+}
+
+.markdown-source-view.mod-cm6 .HyperMD-header-4 {
+	font-size: 1.25em !important;
+}
+
+.markdown-source-view.mod-cm6 .HyperMD-header-5,
+.markdown-source-view.mod-cm6 .HyperMD-header-6 {
+	font-size: 1em !important;
+}
+
+.markdown-rendered :is(p, blockquote, ul, ol, dl, table) {
+	margin-top: 0.8em;
+	margin-bottom: 0.8em;
+}
+
+.markdown-rendered :is(ul, ol) {
+	padding-left: 30px;
+}
+
+.markdown-rendered a,
+.markdown-source-view.mod-cm6 :is(.cm-hmd-internal-link, .cm-link, .cm-url) {
+	color: var(--typora-link);
+}
+
+.external-link {
+	padding-right: 0;
+	background-image: none;
+}
+
+.markdown-rendered blockquote {
+	padding: 0 15px;
+	border-left: 4px solid #dfe2e5;
+	color: var(--typora-muted);
+}
+
+.markdown-source-view.mod-cm6 .HyperMD-quote {
+	color: var(--typora-muted);
+}
+
+.markdown-rendered hr {
+	height: 2px;
+	margin: 16px 0;
+	border: 0;
+	background: var(--typora-border);
+}
+
+.markdown-preview-view table,
+.markdown-source-view.mod-cm6 .cm-table-widget table {
+	width: auto;
+	max-width: 100%;
+	margin: 0.8em 0;
+	border: 1px solid #dfe2e5 !important;
+	border-collapse: collapse;
+	border-radius: 0;
+	background: #ffffff;
+	box-shadow: none;
+	word-break: initial;
+}
+
+.markdown-preview-view :is(th, td) {
+	padding: 6px 13px;
+	border: 1px solid #dfe2e5 !important;
+}
+
+.markdown-source-view.mod-cm6 .cm-table-widget :is(th, td) {
+	padding: 0 !important;
+	border: 1px solid #dfe2e5 !important;
+}
+
+.markdown-source-view.mod-cm6 .cm-table-widget .table-cell-wrapper {
+	padding: 6px 13px !important;
+}
+
+.markdown-preview-view thead,
+.markdown-preview-view tbody tr:nth-child(2n),
+.markdown-source-view.mod-cm6 .cm-table-widget thead,
+.markdown-source-view.mod-cm6 .cm-table-widget tbody tr:nth-child(2n) {
+	background: var(--typora-code-bg);
+}
+
+.markdown-preview-view th,
+.markdown-source-view.mod-cm6 .cm-table-widget th {
+	font-weight: 700;
+}
+
+.markdown-rendered :not(pre) > code,
+.markdown-source-view.mod-cm6 .cm-inline-code {
+	padding: 2px 4px 0;
+	border: 1px solid var(--typora-code-border);
+	border-radius: 3px;
+	background: #f3f4f4;
+	font-size: 0.9em;
+}
+
+.markdown-rendered pre {
+	border: 1px solid var(--typora-code-border);
+	border-radius: 3px;
+	background: var(--typora-code-bg);
+}
+
+.markdown-rendered pre {
+	margin: 15px 0;
+	padding: 8px 10px 6px;
+}
+
+/* 编辑态只保留代码块整体外框，不给每一行单独画框。 */
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock {
+	border-top: 0 !important;
+	border-right: 1px solid var(--typora-code-border) !important;
+	border-bottom: 0 !important;
+	border-left: 1px solid var(--typora-code-border) !important;
+	border-radius: 0 !important;
+	background: var(--typora-code-bg);
+	box-shadow: none !important;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-begin {
+	border-top: 1px solid var(--typora-code-border) !important;
+	border-radius: 3px 3px 0 0 !important;
+}
+
+.markdown-source-view.mod-cm6 .cm-line.HyperMD-codeblock-end {
+	border-bottom: 1px solid var(--typora-code-border) !important;
+	border-radius: 0 0 3px 3px !important;
+}
+
+.markdown-rendered img,
+.markdown-source-view.mod-cm6 img {
+	display: block;
+	max-width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.image-embed[alt]::after {
+	display: block;
+	margin: 0.2rem 1rem 1rem;
+	color: var(--typora-muted);
+	content: attr(alt);
+	font-size: 0.9em;
+	line-height: 1.4;
+	text-align: center;
+}

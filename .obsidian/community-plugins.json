@@ -1,9 +1,8 @@
 [
   "table-editor-obsidian",
-  "obsidian-book-search-plugin",
-  "calendar",
   "obsidian-dynamic-toc",
   "obsidian-excalidraw-plugin",
-  "privacy-glasses",
-  "obsidian-latex-environments"
+  "obsidian-latex-environments",
+  "shiki-highlighter",
+  "obsidian-minimal-settings"
 ]
